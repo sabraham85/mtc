@@ -1,0 +1,6 @@
+# Ignore Database and DB Script Files
+*.db
+*.sql
+
+#Ignore Compiled python Files
+*.pyc

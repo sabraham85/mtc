@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'St. Andrews Site Administration' %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans 'St. Andrews MTC Site administration' %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+<body>
+    <div id="sidebar">
+        {% block sidebar %}
+        <ul>
+            <li><a href="/">Home</a></li>
+        </ul>
+        {% endblock %}
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

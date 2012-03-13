@@ -1,0 +1,46 @@
+{% extends "membership/base.html" %}
+
+{% block content %}
+    <h2>Members</h2>
+    <ul>
+        {% for members in members_list %}
+            <li>{{ members.last_name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+class Parish(models.Model):
+    name
+    address_line1 
+    address_line2 
+    city 
+    state_province 
+
+class Members(models.Model):
+    last_name
+    first_name
+    middle_name 
+    dob 
+    cell
+    phone
+    email
+    address_line1 
+    address_line2 
+    city 
+    postal_code 
+    state_province 
+    country 
+    prayer_group_code 
+    parish_id 
+
+
+
+class MembersFamily(models.Model):
+
+    last_name 
+    first_name 
+    middle_name
+    dob 
+    email 
+    relationship 
+    member_id 

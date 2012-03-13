@@ -1,0 +1,92 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+
+     <style type="text/css">
+     html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+body {
+margin: 0;
+background-color: #fff;
+font: 11px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+line-height: 1.231;
+}
+body, button, input, select, textarea { font: 11px/20px "Helvetica Neue",Helvetica,Arial,sans-serif; color: #000; letter-spacing:1px;
+} 
+/* =============================================================================
+Tables
+========================================================================== */
+table { border-collapse: collapse; border-spacing: 0; width: 75%; border: 0px solid black; }
+td, tr { vertical-align: top; border: 0px}
+#membername
+{
+	width: 35%;
+	font-weight:bold;	
+}
+#dob
+{
+	width: 5%;
+}
+#email
+{
+	width: 25%;
+}
+#address
+{
+	width: 35%;	
+}
+     
+     </style>
+    <title>St. Andrews Mar Thomas Church</title>
+</head>
+	
+
+<body>    
+	{% for member in memberdetails.object_list %}
+	<table>
+			<tr>
+				<td id="membername">{{ member.last_name }}&nbsp;{{ member.first_name }}&nbsp;{{ member.middle_name }}</td>
+				{% if member.dob == None %}
+					<td id="dob"></td>
+				{% else %}
+					<td id="dob">{{ member.dob|date:"j-M" }}</td>
+				{% endif %}
+				<td id="email">{{ member.email }}</td>
+				<td id="address" rowspan="0">
+					{{ member.address_line1 }}<br>
+					{{ member.address_line2 }}<br>
+					{{ member.city }}<br>
+					{{ member.state_province }}<br>
+					{{ member.postal_code }}<br>
+					Phone: {{ member.phone }}<br>
+					Cell: {{ member.cell }}
+				</td>
+				</td>
+			</tr>
+			{% for familymember in member.familymember_set.all %}
+			<tr>
+				<td>{{ familymember.first_name }}&nbsp;{{ familymember.middle_name }}&nbsp;{{ familymember.last_name }}</td>
+				<td>{{ familymember.dob|date:"j-M" }}</td>
+				<td>{{ familymember.email }}</td>
+			</tr>
+			{% endfor %}
+			<tr>
+				<td colspan="3">Parish: {{ member.parish_id }}</td>
+			</tr>	
+			<tr>
+				<td>APGC&nbsp;&nbsp;&nbsp;{{ member.prayer_group_code }}</td>	
+			</tr>
+			<tr>
+				{% if member.house_name == None %}
+					<td id="housename">House Name: </td>
+				{% else %}
+					<td>House Name: {{ member.house_name }}</td>
+				{% endif %}
+			</tr>
+			<br/>
+</table>
+	{% endfor %}
+
+</body>
+
+</html>
